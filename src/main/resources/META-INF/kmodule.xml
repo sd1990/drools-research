@@ -1,11 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <kmodule xmlns="http://www.drools.org/xsd/kmodule">
+    <!--name kbase的唯一标示-->
+    <!--packages kbase的rules的路径-->
+    <kbase name="account" packages="rules.account">
+        <ksession name="account-rules"/>
+    </kbase>
+    <kbase name="sp" packages="rules.sp">
+        <ksession name="sp-rules"/>
+    </kbase>
     <kbase name="rules" packages="rules">
-        <ksession name="ksession-rules"/>
+        <ksession name="rules"/>
     </kbase>
-    <kbase name="dtables" packages="dtables">
-        <ksession name="ksession-dtables"/>
+    <kbase name="TemplatesKB" packages="rules.drt">
+        <ruleTemplate dtable="ExampleCheese.xls"
+                      template="rules/drt/CheeseFans.drt"
+                      row="2" col="2"/>
+        <ksession name="TemplatesKS"/>
     </kbase>
-    <kbase name="process" packages="process">
-        <ksession name="ksession-process"/>
+    <kbase name="stateless" packages="rules.sp">
+        <ksession name="statelessSession" type="stateless" default="true"/>
+    </kbase>
+    <kbase name="hotel" packages="rules.hotel">
+        <ksession name="hotelSession"/>
     </kbase>
 </kmodule>

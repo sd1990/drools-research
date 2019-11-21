@@ -1,0 +1,29 @@
+package org.songdan
+import org.songdan.drools.research.model.SpCheckContext
+import org.songdan.drools.research.model.Person
+global java.util.List list
+
+rule "spDiscountCheck_1"
+  when
+  $context : SpCheckContext( specialDiscount && !discountExpired && openServiceDiscountCls)
+  then
+  list.add($context);
+  System.out.println("check special discount with context 1");
+end
+
+rule "spDiscountCheck_2"
+  when
+  $context : SpCheckContext( specialDiscount && discountChange)
+  then
+  System.out.println("check special discount with context 2");
+end
+
+rule "spDiscountCheck_3"
+  when
+  $context : SpCheckContext( specialDiscount && !discountExpired && openServiceDiscountCls)
+  $p : Person(age>=35)
+  then
+  list.add($context);
+  list.add($p);
+  System.out.println("check special discount with context and person");
+end
