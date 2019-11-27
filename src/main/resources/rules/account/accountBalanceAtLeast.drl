@@ -1,6 +1,8 @@
 package org.songdan
 import org.songdan.drools.research.model.Account
 rule "accountBalanceAtLeast"
+//  no-loop true
+//  lock-on-active true
   when
   $account : Account( balance < 100 )
   then
@@ -8,8 +10,13 @@ rule "accountBalanceAtLeast"
 end
 
 rule "accountBalanceRecharge"
+//  lock-on-active false
+//  no-loop true
   when
   $account : Account( balance < 100 )
   then
-  System.out.println("Warning! money running out!");
+  modify($account){
+    setBalance($account.getBalance()+10)
+  }
+  System.out.println("Warning! modify money running out!");
 end

@@ -17,8 +17,8 @@
                       row="2" col="2"/>
         <ksession name="TemplatesKS"/>
     </kbase>
-    <kbase name="stateless" packages="rules.sp">
-        <ksession name="statelessSession" type="stateless" default="true"/>
+    <kbase name="stateless" packages="rules.account">
+        <ksession name="statelessSession" type="stateless"/>
     </kbase>
     <kbase name="hotel" packages="rules.hotel">
         <ksession name="hotelSession"/>

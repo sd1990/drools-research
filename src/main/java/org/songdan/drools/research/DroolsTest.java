@@ -25,8 +25,9 @@ import java.util.List;
 public class DroolsTest {
 
     public static void main(String[] args) {
-//        statelessDemo();
-        statefulDemo();
+        statelessDemo();
+        System.out.println("=============");
+//        statefulDemo();
         accountDemo();
 //        reload();
 //        String ruleDrl = "package org.songdan\n" +
@@ -40,10 +41,6 @@ public class DroolsTest {
 //        generate(ruleDrl);
     }
 
-    private static void demo() {
-        statelessDemo();
-//        drtDemo();
-    }
 
     private static void drtDemo() {
         KieServices kieServices = KieServices.Factory.get();
@@ -61,16 +58,11 @@ public class DroolsTest {
         KieServices kieServices = KieServices.Factory.get();
         KieContainer kContainer = kieServices.getKieClasspathContainer();
         StatelessKieSession kieSession = kContainer.newStatelessKieSession("statelessSession");
-        List<Object> list = new ArrayList<>();
-        SpCheckContext spCheckContext = new SpCheckContext();
-        spCheckContext.setDiscountExpired(false);
-        spCheckContext.setOpenServiceDiscountCls(true);
-        spCheckContext.setSpecialDiscount(true);
-        kieSession.setGlobal("list", list);
-        kieSession.execute(spCheckContext);
-        Person person = new Person("lily", 40);
-        kieSession.execute(person);
-        System.out.println("list is " + list);
+        Account account = new Account(200);
+        account.withdraw(150);
+        kieSession.execute(account);
+        account.setBalance(50);
+        kieSession.execute(new Account(200));
     }
 
     private static void statefulDemo() {

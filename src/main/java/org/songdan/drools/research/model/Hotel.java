@@ -7,7 +7,6 @@ import org.kie.api.runtime.rule.FactHandle;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author: Songdan
@@ -28,7 +27,7 @@ public class Hotel {
 
         String[] names = new String[]{"kitchen", "bedroom", "office", "livingroom"};
         name2room = new HashMap<>();
-        for(String name: names){
+        for (String name : names) {
             Room room = new Room(name);
             name2room.put(name, room);
             ksession.insert(room);
@@ -40,8 +39,8 @@ public class Hotel {
 
     public static void main(String[] args) throws InterruptedException {
         Hotel hotel = new Hotel();
-        Fire kitchenFire = new Fire(hotel.name2room.get( "kitchen") );
-        Fire officeFire = new Fire(hotel.name2room.get( "office") );
+        Fire kitchenFire = new Fire(hotel.name2room.get("kitchen"));
+        Fire officeFire = new Fire(hotel.name2room.get("office"));
         FactHandle kitchenFireHandle = hotel.ksession.insert(kitchenFire);
         FactHandle officeFireHandle = hotel.ksession.insert(officeFire);
 
